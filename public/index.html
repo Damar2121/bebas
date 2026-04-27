@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privat Barengan 2026 – Pendaftaran Umrah & Travel Promo</title>
+  <meta name="description" content="Daftarkan diri Anda untuk program Privat Barengan 2026. Paket umrah dan travel promo terjangkau dengan pilihan durasi fleksibel dari berbagai kota keberangkatan di Indonesia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Background Particles ── -->
+  <div class="bg-particles" aria-hidden="true">
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
+
+  <!-- ── Page Layout ── -->
+  <main class="page-wrapper">
+
+    <!-- Hero Header -->
+    <header class="hero-header">
+      <div class="hero-badge">✨ Program Eksklusif 2026</div>
+      <h1 class="hero-title">
+        Privat Barengan<br />
+        <span class="gold-text">Umrah & Travel Promo</span>
+      </h1>
+      <p class="hero-subtitle">
+        Daftarkan diri Anda sekarang — tanpa DP, tanpa ribet.<br />
+        Kami akan menghubungi Anda untuk konfirmasi tiket segera.
+      </p>
+
+      <!-- Feature Pills -->
+      <div class="feature-pills" aria-label="Keunggulan program">
+        <span class="pill">🕌 Umrah & Travel</span>
+        <span class="pill">💰 Tanpa DP</span>
+        <span class="pill">✈️ Multi Kota</span>
+        <span class="pill">📅 Juni–Desember 2026</span>
+      </div>
+    </header>
+
+    <!-- Registration Form Card -->
+    <section class="form-card" aria-labelledby="form-heading">
+      <div class="form-card-header">
+        <h2 id="form-heading">Formulir Pendaftaran</h2>
+        <p>Isi data Bapak/Ibu dengan lengkap dan benar</p>
+      </div>
+
+      <form id="registrationForm" novalidate>
+
+        <!-- ── Step 1: Data Diri ── -->
+        <fieldset class="form-section">
+          <legend class="section-label">
+            <span class="section-number">01</span>
+            Data Diri
+          </legend>
+
+          <!-- Email -->
+          <div class="form-group" id="group-email">
+            <label for="email" class="field-label">
+              Email <span class="required-star">*</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-icon" aria-hidden="true">✉️</span>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                placeholder="contoh@email.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+            <span class="field-error" id="error-email" role="alert"></span>
+          </div>
+
+          <!-- Nama Lengkap -->
+          <div class="form-group" id="group-nama_lengkap">
+            <label for="nama_lengkap" class="field-label">
+              Siapa nama Bapak/Ibu? <span class="required-star">*</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-icon" aria-hidden="true">👤</span>
+              <input
+                type="text"
+                id="nama_lengkap"
+                name="nama_lengkap"
+                class="form-input"
+                placeholder="Nama lengkap sesuai KTP"
+                autocomplete="name"
+                required
+              />
+            </div>
+            <span class="field-error" id="error-nama_lengkap" role="alert"></span>
+          </div>
+
+          <!-- Nomor WA -->
+          <div class="form-group" id="group-nomor_wa">
+            <label for="nomor_wa" class="field-label">
+              Berapa Nomor Handphone / WA Bapak/Ibu? <span class="required-star">*</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-icon" aria-hidden="true">📱</span>
+              <input
+                type="tel"
+                id="nomor_wa"
+                name="nomor_wa"
+                class="form-input"
+                placeholder="08xxxxxxxxxx"
+                autocomplete="tel"
+                required
+              />
+            </div>
+            <span class="field-hint">Contoh: 08123456789 atau +628123456789</span>
+            <span class="field-error" id="error-nomor_wa" role="alert"></span>
+          </div>
+        </fieldset>
+
+        <!-- ── Step 2: Pilihan Keberangkatan ── -->
+        <fieldset class="form-section">
+          <legend class="section-label">
+            <span class="section-number">02</span>
+            Pilihan Keberangkatan
+          </legend>
+
+          <!-- Bulan Keberangkatan -->
+          <div class="form-group" id="group-bulan_keberangkatan">
+            <label class="field-label">
+              Kapan Bapak/Ibu ingin berangkat Privat Barengan? <span class="required-star">*</span>
+            </label>
+            <div class="radio-grid" role="radiogroup" aria-labelledby="label-bulan" aria-required="true">
+              <span id="label-bulan" class="sr-only">Pilih bulan keberangkatan</span>
+              <label class="radio-card" for="bulan-juni">
+                <input type="radio" id="bulan-juni" name="bulan_keberangkatan" value="Juni 2026" required />
+                <span class="radio-card-inner">
+                  <span class="radio-month">Juni</span>
+                  <span class="radio-year">2026</span>
+                </span>
+              </label>
+              <label class="radio-card" for="bulan-juli">
+                <input type="radio" id="bulan-juli" name="bulan_keberangkatan" value="Juli 2026" />
+                <span class="radio-card-inner">
+                  <span class="radio-month">Juli</span>
+                  <span class="radio-year">2026</span>
+                </span>
+              </label>
+              <label class="radio-card" for="bulan-agustus">
+                <input type="radio" id="bulan-agustus" name="bulan_keberangkatan" value="Agustus 2026" />
+                <span class="radio-card-inner">
+                  <span class="radio-month">Agustus</span>
+                  <span class="radio-year">2026</span>
+                </span>
+              </label>
+              <label class="radio-card" for="bulan-september">
+                <input type="radio" id="bulan-september" name="bulan_keberangkatan" value="September 2026" />
+                <span class="radio-card-inner">
+                  <span class="radio-month">September</span>
+                  <span class="radio-year">2026</span>
+                </span>
+              </label>
+              <label class="radio-card" for="bulan-oktober">
+                <input type="radio" id="bulan-oktober" name="bulan_keberangkatan" value="Oktober 2026" />
+                <span class="radio-card-inner">
+                  <span class="radio-month">Oktober</span>
+                  <span class="radio-year">2026</span>
+                </span>
+              </label>
+              <label class="radio-card" for="bulan-nopember">
+                <input type="radio" id="bulan-nopember" name="bulan_keberangkatan" value="Nopember 2026" />
+                <span class="radio-card-inner">
+                  <span class="radio-month">Nopember</span>
+                  <span class="radio-year">2026</span>
+                </span>
+              </label>
+              <label class="radio-card" for="bulan-desember">
+                <input type="radio" id="bulan-desember" name="bulan_keberangkatan" value="Desember 2026" />
+                <span class="radio-card-inner">
+                  <span class="radio-month">Desember</span>
+                  <span class="radio-year">2026</span>
+                </span>
+              </label>
+            </div>
+            <span class="field-error" id="error-bulan_keberangkatan" role="alert"></span>
+          </div>
+
+          <!-- Durasi Program -->
+          <div class="form-group" id="group-durasi_program">
+            <label class="field-label">
+              Program berapa hari yang Bapak/Ibu inginkan? <span class="required-star">*</span>
+            </label>
+            <div class="radio-list" role="radiogroup" aria-labelledby="label-durasi" aria-required="true">
+              <span id="label-durasi" class="sr-only">Pilih durasi program</span>
+              <label class="radio-option" for="durasi-9">
+                <input type="radio" id="durasi-9" name="durasi_program" value="9 Hari" required />
+                <span class="radio-option-inner">
+                  <span class="radio-dot" aria-hidden="true"></span>
+                  <span class="radio-option-text">
+                    <strong>9 Hari</strong>
+                    <small>Paket singkat</small>
+                  </span>
+                </span>
+              </label>
+              <label class="radio-option" for="durasi-12">
+                <input type="radio" id="durasi-12" name="durasi_program" value="12 Hari" />
+                <span class="radio-option-inner">
+                  <span class="radio-dot" aria-hidden="true"></span>
+                  <span class="radio-option-text">
+                    <strong>12 Hari</strong>
+                    <small>Paket standar</small>
+                  </span>
+                </span>
+              </label>
+              <label class="radio-option" for="durasi-16">
+                <input type="radio" id="durasi-16" name="durasi_program" value="16 Hari" />
+                <span class="radio-option-inner">
+                  <span class="radio-dot" aria-hidden="true"></span>
+                  <span class="radio-option-text">
+                    <strong>16 Hari</strong>
+                    <small>Paket comfort</small>
+                  </span>
+                </span>
+              </label>
+              <label class="radio-option" for="durasi-12-turki">
+                <input type="radio" id="durasi-12-turki" name="durasi_program" value="12 hari Plus TURKI" />
+                <span class="radio-option-inner">
+                  <span class="radio-dot" aria-hidden="true"></span>
+                  <span class="radio-option-text">
+                    <strong>12 Hari Plus TURKI</strong>
+                    <small>Umrah + wisata Turki</small>
+                  </span>
+                </span>
+              </label>
+              <label class="radio-option" for="durasi-15-cappadocia">
+                <input type="radio" id="durasi-15-cappadocia" name="durasi_program" value="15 hari Plus TURKI Cappadocia" />
+                <span class="radio-option-inner">
+                  <span class="radio-dot" aria-hidden="true"></span>
+                  <span class="radio-option-text">
+                    <strong>15 Hari Plus TURKI Cappadocia</strong>
+                    <small>Umrah + Turki + Cappadocia</small>
+                  </span>
+                </span>
+              </label>
+              <label class="radio-option" for="durasi-30">
+                <input type="radio" id="durasi-30" name="durasi_program" value="30 Hari/SEBULAN" />
+                <span class="radio-option-inner">
+                  <span class="radio-dot" aria-hidden="true"></span>
+                  <span class="radio-option-text">
+                    <strong>30 Hari / SEBULAN</strong>
+                    <small>Paket premium sebulan penuh</small>
+                  </span>
+                </span>
+              </label>
+            </div>
+            <span class="field-error" id="error-durasi_program" role="alert"></span>
+          </div>
+        </fieldset>
+
+        <!-- ── Step 3: Rincian ── -->
+        <fieldset class="form-section">
+          <legend class="section-label">
+            <span class="section-number">03</span>
+            Rincian Perjalanan
+          </legend>
+
+          <!-- Kota Keberangkatan -->
+          <div class="form-group" id="group-kota_keberangkatan">
+            <label for="kota_keberangkatan" class="field-label">
+              Keberangkatan dari mana yang Bapak/Ibu inginkan? <span class="required-star">*</span>
+            </label>
+            <div class="select-wrapper">
+              <span class="select-icon" aria-hidden="true">🏙️</span>
+              <select id="kota_keberangkatan" name="kota_keberangkatan" class="form-select" required>
+                <option value="" disabled selected>-- Pilih kota keberangkatan --</option>
+                <option value="Medan">Medan</option>
+                <option value="Pekanbaru">Pekanbaru</option>
+                <option value="Padang">Padang</option>
+                <option value="Batam">Batam</option>
+                <option value="Palembang">Palembang</option>
+                <option value="Jakarta">Jakarta</option>
+                <option value="Surabaya">Surabaya</option>
+                <option value="Balikpapan">Balikpapan</option>
+                <option value="Banjarmasin">Banjarmasin</option>
+                <option value="Denpasar">Denpasar</option>
+                <option value="Lombok">Lombok</option>
+                <option value="Pontianak">Pontianak</option>
+                <option value="Makassar">Makassar</option>
+                <option value="Kuala Lumpur">Kuala Lumpur</option>
+              </select>
+              <span class="select-arrow" aria-hidden="true">▾</span>
+            </div>
+            <span class="field-error" id="error-kota_keberangkatan" role="alert"></span>
+          </div>
+
+          <!-- Jumlah Peserta -->
+          <div class="form-group" id="group-jumlah_peserta">
+            <label for="jumlah_peserta" class="field-label">
+              Rencana Bapak/Ibu berangkat berapa orang? <span class="required-star">*</span>
+            </label>
+            <div class="number-input-group">
+              <button type="button" class="number-btn" id="btn-decrement" aria-label="Kurangi jumlah peserta">−</button>
+              <div class="input-wrapper number-wrapper">
+                <span class="input-icon" aria-hidden="true">👥</span>
+                <input
+                  type="number"
+                  id="jumlah_peserta"
+                  name="jumlah_peserta"
+                  class="form-input number-input"
+                  placeholder="1"
+                  min="1"
+                  max="100"
+                  value="1"
+                  required
+                />
+              </div>
+              <button type="button" class="number-btn" id="btn-increment" aria-label="Tambah jumlah peserta">+</button>
+            </div>
+            <span class="field-hint">Termasuk Bapak/Ibu sendiri</span>
+            <span class="field-error" id="error-jumlah_peserta" role="alert"></span>
+          </div>
+        </fieldset>
+
+        <!-- ── Submit ── -->
+        <div class="submit-section">
+          <p class="submit-note">
+            🔒 Data Anda aman &amp; terlindungi. Tidak ada DP yang diperlukan saat ini.
+          </p>
+          <button type="submit" id="submitBtn" class="submit-btn">
+            <span class="btn-text">Daftar Sekarang</span>
+            <span class="btn-icon">→</span>
+            <span class="btn-loader" aria-hidden="true"></span>
+          </button>
+        </div>
+
+      </form>
+    </section>
+
+    <!-- ── Success State ── -->
+    <div id="successPanel" class="success-panel" hidden aria-live="polite">
+      <div class="success-icon-wrap">
+        <div class="success-icon">✓</div>
+        <div class="success-ripple"></div>
+      </div>
+      <h2 class="success-title">Pendaftaran Berhasil!</h2>
+      <p class="success-message" id="successMessage"></p>
+      <div class="success-info" id="successInfo"></div>
+      <button type="button" id="registerAgainBtn" class="register-again-btn">
+        Daftarkan Orang Lain
+      </button>
+    </div>
+
+    <!-- ── Toast Notification ── -->
+    <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
+
+    <!-- ── Footer ── -->
+    <footer class="page-footer">
+      <p>© 2026 Privat Barengan. Semua hak dilindungi.</p>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
