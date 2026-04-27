@@ -506,6 +506,10 @@ body {
   animation: fadeIn 0.2s ease;
 }
 
+.modal-backdrop[hidden] {
+  display: none !important;
+}
+
 .modal {
   background: var(--bg-700);
   border: 1px solid var(--border);
