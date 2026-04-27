@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel – Privat Barengan 2026</title>
+  <meta name="description" content="Panel admin untuk memantau data pendaftaran Privat Barengan 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-icon">🕌</span>
+      <div>
+        <div class="logo-title">Admin Panel</div>
+        <div class="logo-sub">Privat Barengan 2026</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" id="nav-dashboard" data-page="dashboard">
+        <span class="nav-icon">📊</span> Dashboard
+      </a>
+      <a href="#" class="nav-item" id="nav-registrations" data-page="registrations">
+        <span class="nav-icon">📋</span> Data Pendaftar
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="/" class="nav-item">
+        <span class="nav-icon">🌐</span> Lihat Form Publik
+      </a>
+    </div>
+  </aside>
+
+  <!-- ── Main Content ── -->
+  <div class="main-content">
+
+    <!-- Top Bar -->
+    <header class="topbar">
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle sidebar">☰</button>
+      <div class="topbar-title" id="pageTitle">Dashboard</div>
+      <button class="refresh-btn" id="refreshBtn" title="Refresh data">↺ Refresh</button>
+    </header>
+
+    <!-- ── Dashboard Page ── -->
+    <section id="page-dashboard" class="page active">
+
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <div class="stat-card stat-primary" id="stat-total">
+          <div class="stat-icon">📝</div>
+          <div class="stat-body">
+            <div class="stat-value" id="val-total">–</div>
+            <div class="stat-label">Total Pendaftaran</div>
+          </div>
+        </div>
+        <div class="stat-card stat-gold" id="stat-peserta">
+          <div class="stat-icon">👥</div>
+          <div class="stat-body">
+            <div class="stat-value" id="val-peserta">–</div>
+            <div class="stat-label">Total Peserta</div>
+          </div>
+        </div>
+        <div class="stat-card stat-green" id="stat-confirmed">
+          <div class="stat-icon">✅</div>
+          <div class="stat-body">
+            <div class="stat-value" id="val-confirmed">–</div>
+            <div class="stat-label">Tiket Terkonfirmasi</div>
+          </div>
+        </div>
+        <div class="stat-card stat-orange" id="stat-waiting">
+          <div class="stat-icon">⏳</div>
+          <div class="stat-body">
+            <div class="stat-value" id="val-waiting">–</div>
+            <div class="stat-label">Menunggu Konfirmasi</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="charts-row">
+
+        <!-- Kota Chart -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Kota Keberangkatan</h3>
+            <span class="chart-sub">Distribusi pendaftar per kota</span>
+          </div>
+          <div class="bar-chart" id="chart-kota"></div>
+        </div>
+
+        <!-- Bulan Chart -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Bulan Keberangkatan</h3>
+            <span class="chart-sub">Distribusi pendaftar per bulan</span>
+          </div>
+          <div class="bar-chart" id="chart-bulan"></div>
+        </div>
+      </div>
+
+      <!-- Durasi Chart -->
+      <div class="chart-card chart-full">
+        <div class="chart-header">
+          <h3>Pilihan Durasi Program</h3>
+          <span class="chart-sub">Program yang paling diminati</span>
+        </div>
+        <div class="bar-chart bar-chart-lg" id="chart-durasi"></div>
+      </div>
+
+    </section>
+
+    <!-- ── Registrations Page ── -->
+    <section id="page-registrations" class="page">
+
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <div class="search-wrapper">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Cari nama, email, atau nomor WA..."
+          />
+        </div>
+
+        <select id="filterBulan" class="filter-select">
+          <option value="">Semua Bulan</option>
+          <option>Juni 2026</option>
+          <option>Juli 2026</option>
+          <option>Agustus 2026</option>
+          <option>September 2026</option>
+          <option>Oktober 2026</option>
+          <option>Nopember 2026</option>
+          <option>Desember 2026</option>
+        </select>
+
+        <select id="filterKota" class="filter-select">
+          <option value="">Semua Kota</option>
+          <option>Medan</option><option>Pekanbaru</option><option>Padang</option>
+          <option>Batam</option><option>Palembang</option><option>Jakarta</option>
+          <option>Surabaya</option><option>Balikpapan</option><option>Banjarmasin</option>
+          <option>Denpasar</option><option>Lombok</option><option>Pontianak</option>
+          <option>Makassar</option><option>Kuala Lumpur</option>
+        </select>
+
+        <select id="filterStatus" class="filter-select">
+          <option value="">Semua Status</option>
+          <option>Menunggu Konfirmasi Tiket</option>
+          <option>Tiket Terkonfirmasi</option>
+          <option>Dibatalkan</option>
+        </select>
+
+        <button class="btn-reset" id="resetFilters">✕ Reset</button>
+      </div>
+
+      <!-- Table Info -->
+      <div class="table-info">
+        <span id="tableCount">Memuat data...</span>
+        <button class="btn-export" id="exportBtn">⬇ Export CSV</button>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrapper">
+        <table class="data-table" id="dataTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nama Lengkap</th>
+              <th>Email</th>
+              <th>Nomor WA</th>
+              <th>Bulan</th>
+              <th>Durasi</th>
+              <th>Kota</th>
+              <th>Peserta</th>
+              <th>Status</th>
+              <th>Tanggal Daftar</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr><td colspan="11" class="table-loading">Memuat data...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="pagination"></div>
+
+    </section>
+
+  </div>
+
+  <!-- ── Detail Modal ── -->
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <div class="modal" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h3 id="modalTitle">Detail Pendaftar</h3>
+        <button class="modal-close" id="modalClose" aria-label="Tutup modal">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer">
+        <div class="status-update">
+          <label for="statusSelect" class="status-label">Update Status:</label>
+          <select id="statusSelect" class="filter-select">
+            <option>Menunggu Konfirmasi Tiket</option>
+            <option>Tiket Terkonfirmasi</option>
+            <option>Dibatalkan</option>
+          </select>
+          <button class="btn-update-status" id="btnUpdateStatus">Simpan</button>
+        </div>
+        <button class="btn-delete" id="btnDelete">🗑 Hapus</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Toast ── -->
+  <div id="adminToast" class="admin-toast" role="alert"></div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

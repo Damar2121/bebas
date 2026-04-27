@@ -151,6 +151,122 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
+// ─── Admin API Routes ──────────────────────────────────────────────────────────
+
+// GET /api/admin/stats
+app.get('/api/admin/stats', async (_req, res) => {
+  try {
+    const [totalRes, pesertaRes, bulanRes, kotaRes, durasiRes, statusRes] = await Promise.all([
+      pool.query('SELECT COUNT(*) AS total FROM pendaftaran_privat_barengan'),
+      pool.query('SELECT COALESCE(SUM(jumlah_peserta), 0) AS total_peserta FROM pendaftaran_privat_barengan'),
+      pool.query('SELECT bulan_keberangkatan, COUNT(*) AS count FROM pendaftaran_privat_barengan GROUP BY bulan_keberangkatan ORDER BY count DESC'),
+      pool.query('SELECT kota_keberangkatan, COUNT(*) AS count FROM pendaftaran_privat_barengan GROUP BY kota_keberangkatan ORDER BY count DESC'),
+      pool.query('SELECT durasi_program, COUNT(*) AS count FROM pendaftaran_privat_barengan GROUP BY durasi_program ORDER BY count DESC'),
+      pool.query('SELECT status_konfirmasi, COUNT(*) AS count FROM pendaftaran_privat_barengan GROUP BY status_konfirmasi'),
+    ]);
+    return res.json({
+      success: true,
+      stats: {
+        total_registrasi: parseInt(totalRes.rows[0].total),
+        total_peserta:    parseInt(pesertaRes.rows[0].total_peserta),
+        by_bulan:  bulanRes.rows,
+        by_kota:   kotaRes.rows,
+        by_durasi: durasiRes.rows,
+        by_status: statusRes.rows,
+      },
+    });
+  } catch (err) {
+    console.error('Admin stats error:', err);
+    return res.status(500).json({ success: false, errors: ['Server error'] });
+  }
+});
+
+// GET /api/admin/registrations
+app.get('/api/admin/registrations', async (req, res) => {
+  const { search, bulan, kota, durasi, status, page = 1, limit = 15 } = req.query;
+  const offset = (parseInt(page) - 1) * parseInt(limit);
+  const conditions = [];
+  const values = [];
+
+  if (search) {
+    values.push(`%${search}%`);
+    conditions.push(`(nama_lengkap ILIKE $${values.length} OR email ILIKE $${values.length} OR nomor_wa ILIKE $${values.length})`);
+  }
+  if (bulan)  { values.push(bulan);  conditions.push(`bulan_keberangkatan = $${values.length}`); }
+  if (kota)   { values.push(kota);   conditions.push(`kota_keberangkatan = $${values.length}`); }
+  if (durasi) { values.push(durasi); conditions.push(`durasi_program = $${values.length}`); }
+  if (status) { values.push(status); conditions.push(`status_konfirmasi = $${values.length}`); }
+
+  const where = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
+
+  try {
+    const countRes = await pool.query(`SELECT COUNT(*) FROM pendaftaran_privat_barengan ${where}`, values);
+    const total    = parseInt(countRes.rows[0].count);
+
+    values.push(parseInt(limit), offset);
+    const dataRes = await pool.query(
+      `SELECT * FROM pendaftaran_privat_barengan ${where} ORDER BY created_at DESC LIMIT $${values.length - 1} OFFSET $${values.length}`,
+      values
+    );
+
+    return res.json({
+      success: true,
+      data: dataRes.rows,
+      pagination: {
+        total,
+        page:        parseInt(page),
+        limit:       parseInt(limit),
+        total_pages: Math.ceil(total / parseInt(limit)),
+      },
+    });
+  } catch (err) {
+    console.error('Admin list error:', err);
+    return res.status(500).json({ success: false, errors: ['Server error'] });
+  }
+});
+
+// PATCH /api/admin/registrations/:id/status
+app.patch('/api/admin/registrations/:id/status', async (req, res) => {
+  const { id }     = req.params;
+  const { status } = req.body;
+  const VALID_STATUS = ['Menunggu Konfirmasi Tiket', 'Tiket Terkonfirmasi', 'Dibatalkan'];
+  if (!status || !VALID_STATUS.includes(status)) {
+    return res.status(400).json({ success: false, errors: ['Status tidak valid'] });
+  }
+  try {
+    const result = await pool.query(
+      'UPDATE pendaftaran_privat_barengan SET status_konfirmasi = $1 WHERE id = $2 RETURNING *',
+      [status, parseInt(id)]
+    );
+    if (result.rowCount === 0) return res.status(404).json({ success: false, errors: ['Data tidak ditemukan'] });
+    return res.json({ success: true, data: result.rows[0] });
+  } catch (err) {
+    console.error('Update status error:', err);
+    return res.status(500).json({ success: false, errors: ['Server error'] });
+  }
+});
+
+// DELETE /api/admin/registrations/:id
+app.delete('/api/admin/registrations/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await pool.query(
+      'DELETE FROM pendaftaran_privat_barengan WHERE id = $1 RETURNING id',
+      [parseInt(id)]
+    );
+    if (result.rowCount === 0) return res.status(404).json({ success: false, errors: ['Data tidak ditemukan'] });
+    return res.json({ success: true, message: `Pendaftaran #${id} berhasil dihapus` });
+  } catch (err) {
+    console.error('Delete error:', err);
+    return res.status(500).json({ success: false, errors: ['Server error'] });
+  }
+});
+
+// Admin panel route
+app.get('/admin', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+});
+
 // Fallback — serve index.html for any unmatched route
 app.get('*', (_req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
